@@ -25,7 +25,7 @@ NOT: Dependency'lerin kurulmasi icin proje dizininde `yarn` komutunun calistiril
 NOT: Uygulama `yarn start:prod` komutu ile ayaga 3000 portunda ayaga kalkiyor.
 
 
-
+---------------------------
 
 #### Set Default Region
 ```bash
@@ -102,8 +102,6 @@ kubectl create secret generic k8s-developer-sa --from-file=$HOME/key.json  -n je
 ```
 
 * Build the jenkins pipeline
-
-
 
 
 # Using Spinnaker to Deploy Applications to GKE 
@@ -267,8 +265,9 @@ The steps:
 https://www.spinnaker.io/setup/install/
 
 
-### Spineaker  Config Yaml
+### Spineaker Config Yaml
 
+```
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -304,10 +303,11 @@ spec:
     app: atolye15
   sessionAffinity: None
   type: LoadBalancer
-
+```
 
 ### JenkinsFile
 
+```
 def label = "mypod-${UUID.randomUUID().toString()}"
 podTemplate(label: label, containers: [
         containerTemplate(name: 'docker', image: 'docker', command: 'cat', ttyEnabled: true),
@@ -394,3 +394,4 @@ podTemplate(label: label, containers: [
       }
     }
 }
+```
